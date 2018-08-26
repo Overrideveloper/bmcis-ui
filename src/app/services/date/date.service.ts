@@ -57,7 +57,7 @@ export class DateService {
 
 
     // ie: 2013-02-18, 8:35 AM
-    date = `${month[mm]} ${dd} ${yyyy} ${h}:${min} ${ampm}`;
+    date = `${month[mm]} ${dd}${this.setOrdinal(dd)} ${yyyy} ${h}:${min} ${ampm}`;
     return date;
   }
 

@@ -10,6 +10,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AuthGuardService as AuthGuard, AuthGuardService } from './services/auth-guard/auth-guard.service';
+import { AdminService as AdminGuard, AdminService } from './services/admin/admin.service';
 import { DateService } from './services/date/date.service';
 
 import { AppComponent } from './app.component';
@@ -22,6 +23,10 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { PatientsComponent } from './components/patients/patients.component';
 import { CreatePatientComponent } from './components/create-patient/create-patient.component';
 import { EditPatientComponent } from './components/edit-patient/edit-patient.component';
+import { UsersComponent } from './components/users/users.component';
+import { CreateUserComponent } from './components/create-user/create-user.component';
+import { ResultsComponent } from './components/results/results.component';
+import { TestComponent } from './components/test/test.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -30,7 +35,11 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'patient/list', component: PatientsComponent, canActivate: [AuthGuard] },
   { path: 'patient/create', component: CreatePatientComponent, canActivate: [AuthGuard] },
-  { path: 'patient/edit/:id', component: EditPatientComponent, canActivate: [AuthGuard] }
+  { path: 'patient/edit/:id', component: EditPatientComponent, canActivate: [AuthGuard] },
+  { path: 'user/list', component: UsersComponent, canActivate: [AdminGuard] },
+  { path: 'user/create', component: CreateUserComponent, canActivate: [AuthGuard] },
+  { path: 'result/list', component: ResultsComponent, canActivate: [AuthGuard] },
+  { path: 'diagnosis/run', component: TestComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
@@ -43,7 +52,11 @@ const routes: Routes = [
     SideMenuComponent,
     PatientsComponent,
     CreatePatientComponent,
-    EditPatientComponent
+    EditPatientComponent,
+    UsersComponent,
+    CreateUserComponent,
+    ResultsComponent,
+    TestComponent
   ],
   imports: [
     CommonModule,
@@ -57,7 +70,7 @@ const routes: Routes = [
     ToastrModule.forRoot(),
     RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
   ],
-  providers: [AuthGuardService, DateService],
+  providers: [AuthGuardService, DateService, AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

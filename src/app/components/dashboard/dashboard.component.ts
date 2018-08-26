@@ -20,6 +20,9 @@ export class DashboardComponent implements OnInit {
   public user = {};
   public users;
   public patients;
+  public tests;
+  public positives;
+  public negatives;
   constructor(public dateService: DateService, public router: Router, public http: HttpClient) { }
 
   ngOnInit() {
@@ -47,14 +50,42 @@ export class DashboardComponent implements OnInit {
 
   statistics() {
     this.http.get(`${URL}user/list`).subscribe((data: any) => {
-      if (data.code === 200) {
+      if (data.code === 200 && data.data.length !== 0) {
         this.users = data.data.length;
+      } else {
+        this.users = 0;
       }
     });
 
     this.http.get(`${URL}patient/list`).subscribe((data: any) => {
-      if (data.code === 200) {
+      if (data.code === 200 && data.data.length !== 0) {
         this.patients = data.data.length;
+      } else {
+        this.patients = 0;
+      }
+    });
+
+    this.http.get(`${URL}test/list`).subscribe((data: any) => {
+      if (data.code === 200 && data.data.length !== 0) {
+        this.tests = data.data.length;
+      } else {
+        this.tests = 0;
+      }
+    });
+
+    this.http.get(`${URL}test/positive`).subscribe((data: any) => {
+      if (data.code === 200 && data.data.length !== 0) {
+        this.positives = data.data.length;
+      } else {
+        this.positives = 0;
+      }
+    });
+
+    this.http.get(`${URL}test/negative`).subscribe((data: any) => {
+      if (data.code === 200 && data.data.length !== 0) {
+        this.negatives = data.data.length;
+      } else {
+        this.negatives = 0;
       }
     });
   }

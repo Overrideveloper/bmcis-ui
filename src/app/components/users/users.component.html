@@ -1,0 +1,69 @@
+<div class="container-scroller">
+  <!-- partial:partials/_navbar.html -->
+  <app-nav></app-nav>
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_sidebar.html -->
+    <app-side-menu></app-side-menu>
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="row">
+          <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <input (input)="filter($event)" [(ngModel)]="query" class="form-control col-md-3" placeholder="Search by username..." aria-label="Search" aria-describedby="colored-addon2">
+                <a [routerLink]="['/user/create']" routerLinkActive="router-link-active"  style="float: right;" class="btn btn-success">New User
+                  <i class="mdi mdi-plus"></i>
+                </a>
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Username</th>
+                        <th>Group</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody *ngIf="query === ''">
+                      <tr *ngFor="let user of users">
+                        <td></td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.group}}</td>
+                        <td>
+                          <i *ngIf="user.group !== 'Admin'" class="mdi mdi-delete text-info" style="font-size: 1.5em;" (click)="delete(user.id)"></i>
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tbody *ngIf="query !== ''">
+                      <tr *ngFor="let user of queryArray">
+                        <td></td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.group}}</td>
+                        <td>
+                          <i *ngIf="user.group !== 'Admin'" class="mdi mdi-delete text-info" style="font-size: 1.5em;" (click)="delete(user.id)"></i>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <!-- partial:partials/_footer.html -->
+      <footer class="footer">
+        <div class="container-fluid clearfix">
+          <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+            The Override Dev.</span>
+        </div>
+      </footer>
+      <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+</div>

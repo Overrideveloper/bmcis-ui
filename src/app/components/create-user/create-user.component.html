@@ -1,0 +1,79 @@
+<div class="container-scroller">
+  <!-- partial:partials/_navbar.html -->
+  <app-nav></app-nav>
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_sidebar.html -->
+    <app-side-menu></app-side-menu>
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 d-flex align-items-stretch">
+              <div class="row flex-grow">
+                <div class="col-12 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">New User</h4>
+                      <p class="card-description">
+                        All fields are required.
+                      </p>
+                      <form (submit)="submit()">
+                        <div class="row">
+                          <div class="form-group col-md-4">
+                            <div class="input-group">
+                              <div class="input-group-prepend bg-info">
+                                <span class="input-group-text bg-transparent">
+                                  <i class="mdi mdi-account-outline text-white"></i>
+                                </span>
+                              </div>
+                              <input [(ngModel)]="user.username" [ngModelOptions]= "{standalone: true}" type="text" class="form-control" placeholder="Username" aria-label="Name" aria-describedby="colored-addon1">
+                            </div>
+                          </div>
+                          <div class="form-group col-md-4">
+                            <div class="input-group">
+                              <div class="input-group-prepend bg-primary border-primary">
+                                <span class="input-group-text bg-transparent">
+                                  <i class="mdi mdi-key text-white"></i>
+                                </span>
+                              </div>
+                              <input [(ngModel)]="user.hash" [ngModelOptions]= "{standalone: true}" type="password" class="form-control" placeholder="Password (Not less than 7 characters)" aria-label="Age" aria-describedby="colored-addon2">
+                            </div>
+                          </div>
+                          <div class="form-group col-md-4">
+                            <div class="input-group">
+                              <div class="input-group-prepend bg-warning border-warning">
+                                <span class="input-group-text bg-transparent">
+                                  <i class="mdi mdi-group text-white"></i>
+                                </span>
+                              </div>
+                              <select [(ngModel)]="user.group" [ngModelOptions]= "{standalone: true}" class="form-control" aria-describedby="colored-addon2">
+                                <option value="Group" selected>Group</option>
+                                <option *ngFor="let group of groups" value="{{group}}">{{group}}</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <button [disabled]="user.username === '' || user.hash.length < 7 ||  user.hash === '' || user.group === ''" type="submit" class="btn btn-success mr-2">Submit</button>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <!-- partial:partials/_footer.html -->
+      <footer class="footer">
+        <div class="container-fluid clearfix">
+          <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+            The Override Dev.</span>
+        </div>
+      </footer>
+      <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+</div>

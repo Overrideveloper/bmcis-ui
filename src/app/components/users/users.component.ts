@@ -8,26 +8,26 @@ const config = require('../../config'),
   URL = config.url;
 
 @Component({
-  selector: 'app-patients',
-  templateUrl: './patients.component.html',
-  styleUrls: ['./patients.component.css']
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.css']
 })
-export class PatientsComponent implements OnInit {
-  public patients = [];
+export class UsersComponent implements OnInit {
+  public users = [];
   public init = [];
   public queryArray = [];
   public query = '';
   constructor(public router: Router, public http: HttpClient) { }
 
   ngOnInit() {
-    this.loadPatients();
+    this.loadusers();
   }
 
-  loadPatients() {
-    this.http.get(`${URL}patient/list`).subscribe((data: any) => {
+  loadusers() {
+    this.http.get(`${URL}user/list`).subscribe((data: any) => {
       if (data.code === 200) {
-        this.patients = data.data;
-        this.init = this.patients;
+        this.users = data.data;
+        this.init = this.users;
       }
     });
   }
@@ -35,7 +35,7 @@ export class PatientsComponent implements OnInit {
   delete(id) {
     swal({
       title: 'Are you sure?',
-      text: 'Once deleted, this entry cannot be recovered.',
+      text: 'Once deleted, this user cannot be recovered.',
       icon: 'warning',
       buttons: [ true, true ],
       dangerMode: true
@@ -43,10 +43,10 @@ export class PatientsComponent implements OnInit {
       if (willDelete) {
         const form = new FormData();
         form.append('id', id);
-        this.http.post(`${URL}patient/delete`, form).subscribe((data: any) => {
+        this.http.post(`${URL}user/delete`, form).subscribe((data: any) => {
           if (data.code === 200) {
-            this.loadPatients();
-            swal('Poof! Patient deleted!', {
+            this.loadusers();
+            swal('Poof! User deleted!', {
               icon: 'success',
             });
           }
@@ -73,8 +73,8 @@ export class PatientsComponent implements OnInit {
     }
 
     this.queryArray = this.init.filter((v) => {
-      if (v.name && q) {
-        if (v.name.toLowerCase().indexOf(q.toLowerCase()) === 0) {
+      if (v.username && q) {
+        if (v.username.toLowerCase().indexOf(q.toLowerCase()) === 0) {
           return true;
         }
         return false;

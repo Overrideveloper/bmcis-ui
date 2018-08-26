@@ -59,7 +59,7 @@
                   <div class="float-right">
                     <p class="mb-0 text-right">Tests</p>
                     <div class="fluid-container">
-                      <h3 class="font-weight-medium text-right mb-0">5693</h3>
+                      <h3 class="font-weight-medium text-right mb-0">{{tests}}</h3>
                     </div>
                   </div>
                 </div>
@@ -79,7 +79,6 @@
                   <h3>{{day}}</h3>
                   <p class="text-gray">
                     <span class="weather-date">{{date}}</span>
-                    <span hidden class="weather-location">London</span>
                   </p>
                 </div>
                 <div class="weather-data d-flex">
@@ -164,43 +163,35 @@
           <div class="col-lg-5 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h2 class="card-title text-primary mb-5">Test History</h2>
+                <h2 class="card-title text-primary mb-5">Diagnosis Statistics</h2>
                 <div class="wrapper d-flex justify-content-between">
                   <div class="side-left">
                     <p class="mb-2">Positive Results</p>
-                    <p class="display-3 mb-4 font-weight-light">+45.2%</p>
+                    <p class="display-3 mb-4 font-weight-light">{{positives}}</p>
                   </div>
                   <div class="side-right">
-                    <small class="text-muted">Up-to-date</small>
+                    <small class="text-muted">All-time</small>
                   </div>
                 </div>
                 <div class="wrapper d-flex justify-content-between">
                   <div class="side-left">
                     <p class="mb-2">Negative Results</p>
-                    <p class="display-3 mb-5 font-weight-light">-35.3%</p>
+                    <p class="display-3 mb-5 font-weight-light">{{negatives}}</p>
                   </div>
                   <div class="side-right">
-                    <small class="text-muted">Up-to-date</small>
+                    <small class="text-muted">All-time</small>
                   </div>
                 </div>
                 <div class="wrapper">
                   <div class="d-flex justify-content-between">
-                    <p class="mb-2">Positive Results</p>
-                    <p class="mb-2 text-primary">88%</p>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" role="progressbar" style="width: 88%" aria-valuenow="88"
-                      aria-valuemin="0" aria-valuemax="100"></div>
+                    <p class="mb-2">Positive Results (%) </p>
+                    <p class="mb-2 text-primary">{{((positives / tests) * 100)}}</p>
                   </div>
                 </div>
                 <div class="wrapper mt-4">
                   <div class="d-flex justify-content-between">
-                    <p class="mb-2">Negative Results</p>
-                    <p class="mb-2 text-success">56%</p>
-                  </div>
-                  <div class="progress">
-                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: 56%" aria-valuenow="56"
-                      aria-valuemin="0" aria-valuemax="100"></div>
+                    <p class="mb-2">Negative Results (%)</p>
+                    <p class="mb-2 text-success">{{((negatives / tests) * 100)}}</p>
                   </div>
                 </div>
               </div>
