@@ -1,0 +1,47 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <div class="nav-link">
+        <div class="user-wrapper">
+          <div class="profile-image">
+            <img src="../../../assets/images/faces-clipart/pic-1.png" alt="profile image">
+          </div>
+          <div class="text-wrapper">
+            <p class="profile-name">{{user.username}}</p>
+            <div>
+              <small class="designation text-muted">{{user.group}}</small>
+              <span class="status-indicator online"></span>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-success btn-block">New Test
+          <i class="mdi mdi-plus"></i>
+        </button>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['/']" routerLinkActive="router-link-active"  class="nav-link">
+        <i class="menu-icon mdi mdi-television"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link">
+        <i class="menu-icon mdi mdi-chart-line"></i>
+        <span class="menu-title">Results</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['/patient/list']" routerLinkActive="router-link-active"  class="nav-link">
+        <i class="menu-icon mdi mdi-table"></i>
+        <span class="menu-title">Patients</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link">
+        <i class="menu-icon mdi mdi-account"></i>
+        <span class="menu-title">Users</span>
+      </a>
+    </li>
+  </ul>
+</nav>

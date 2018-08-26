@@ -1,0 +1,127 @@
+<div class="container-scroller">
+  <!-- partial:partials/_navbar.html -->
+  <app-nav></app-nav>
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_sidebar.html -->
+    <app-side-menu></app-side-menu>
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 d-flex align-items-stretch">
+              <div class="row flex-grow">
+                <div class="col-12 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Edit Patient</h4>
+                      <p class="card-description">
+                        All fields are required.
+                      </p>
+                      <form (submit)="submit()">
+                        <div class="row">
+                          <div class="form-group col-md-4">
+                            <div class="input-group">
+                              <div class="input-group-prepend bg-info">
+                                <span class="input-group-text bg-transparent">
+                                  <i class="mdi mdi-rename-box text-white"></i>
+                                </span>
+                              </div>
+                              <input [(ngModel)]="patient.name" [ngModelOptions]= "{standalone: true}" type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="colored-addon1">
+                            </div>
+                          </div>
+                          <div class="form-group col-md-4">
+                            <div class="input-group">
+                              <div class="input-group-prepend bg-primary border-primary">
+                                <span class="input-group-text bg-transparent">
+                                  <i class="mdi mdi-chart-donut text-white"></i>
+                                </span>
+                              </div>
+                              <input [(ngModel)]="patient.age" [ngModelOptions]= "{standalone: true}" type="number" class="form-control" placeholder="Age" aria-label="Age" aria-describedby="colored-addon2">
+                            </div>
+                          </div>
+                          <div class="form-group col-md-4">
+                            <div class="input-group">
+                              <div class="input-group-prepend bg-warning border-warning">
+                                <span class="input-group-text bg-transparent">
+                                  <i class="mdi mdi-gender-male-female text-white"></i>
+                                </span>
+                              </div>
+                              <select [(ngModel)]="patient.gender" [ngModelOptions]= "{standalone: true}" class="form-control" aria-describedby="colored-addon2">
+                                <option value="Gender" selected>Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group col-md-3">
+                            <div class="input-group">
+                              <div class="input-group-prepend bg-primary border-primary">
+                                <span class="input-group-text bg-transparent">
+                                  <i class="mdi mdi-table-row-height text-white"></i>
+                                </span>
+                              </div>
+                              <input [(ngModel)]="patient.height" [ngModelOptions]= "{standalone: true}" type="number" class="form-control" placeholder="Height (Cm)" aria-label="Height" aria-describedby="colored-addon2">
+                            </div>
+                          </div>
+                          <div class="form-group col-md-3">
+                            <div class="input-group">
+                              <div class="input-group-prepend bg-warning border-warning">
+                                <span class="input-group-text bg-transparent">
+                                  <i class="mdi mdi-weight-kilogram text-white"></i>
+                                </span>
+                              </div>
+                              <input [(ngModel)]="patient.weight" [ngModelOptions]= "{standalone: true}" type="number" class="form-control" placeholder="Weight (Kg)" aria-label="Weight" aria-describedby="colored-addon2">
+                            </div>
+                          </div>
+                          <div class="form-group col-md-3">
+                            <div class="input-group">
+                              <div class="input-group-prepend bg-danger border-danger">
+                                <span class="input-group-text bg-transparent">
+                                  <i class="mdi mdi-heart text-white"></i>
+                                </span>
+                              </div>
+                              <select (change)="loadGenotypes(patient.blood_group)" [(ngModel)]="patient.blood_group" [ngModelOptions]= "{standalone: true}" class="form-control" aria-describedby="colored-addon2">
+                                <option value="Blood Group" selected>Blood Group</option>
+                                <option *ngFor="let group of groups" value="{{group}}">{{group}}</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group col-md-3">
+                            <div class="input-group">
+                              <div class="input-group-prepend bg-info border-info">
+                                <span class="input-group-text bg-transparent">
+                                  <i class="mdi mdi-heart-pulse text-white"></i>
+                                </span>
+                              </div>
+                              <select [(ngModel)]="patient.genotype" [ngModelOptions]="{ standalone: true }" class="form-control" aria-describedby="colored-addon2">
+                                <option value="Genotype" selected>Genotype</option>
+                                <option *ngFor="let genotype of genotypes" value="{{genotype}}">{{genotype}}</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <button [disabled]="patient.age === '' || patient.age <= 0 || patient.weight <= 0 || patient.height <= 0  || patient.name === '' || patient.height === '' || patient.gender === 'Gender' ||
+                          patient.weight === '' || patient.blood_group === 'Blood Group' || patient.genotype === 'Genotype'" type="submit" class="btn btn-success mr-2">Submit</button>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <!-- content-wrapper ends -->
+      <!-- partial:partials/_footer.html -->
+      <footer class="footer">
+        <div class="container-fluid clearfix">
+          <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+            The Override Dev.</span>
+        </div>
+      </footer>
+      <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+</div>

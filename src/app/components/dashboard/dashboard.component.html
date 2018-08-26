@@ -1,90 +1,10 @@
 <div class="container-scroller">
   <!-- partial:partials/_navbar.html -->
-  <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-    <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-      <a class="navbar-brand brand-logo" [routerLink]="['/']" routerLinkActive="router-link-active" >
-        <img src="../../../assets/images/logo.svg" alt="logo" />
-      </a>
-      <a class="navbar-brand brand-logo-mini" [routerLink]="['/']" routerLinkActive="router-link-active" >
-        <img src="../../../assets/images/logo-mini.svg" alt="logo" />
-      </a>
-    </div>
-    <div class="navbar-menu-wrapper d-flex align-items-center">
-      <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
-        <li class="nav-item">
-          <a href="#" class="nav-link">Test
-            <span class="badge badge-primary ml-1">New</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="mdi mdi-elevation-rise"></i>Results</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav navbar-nav-right">
-        <li class="nav-item">
-          <a href="javascript: void(0)" (click)="logOut()" class="nav-link">Logout
-          </a>
-        </li>
-        <li class="nav-item d-none d-xl-inline-block">
-          <a class="nav-link" href="javascript: void(0)">
-            <span class="profile-text">Hello, {{user.username}} !</span>
-            <img class="img-xs rounded-circle" src="../../../assets/images/faces-clipart/pic-1.png" alt="{{user.username}}">
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <app-nav></app-nav>
   <!-- partial -->
   <div class="container-fluid page-body-wrapper">
     <!-- partial:partials/_sidebar.html -->
-    <nav class="sidebar sidebar-offcanvas" id="sidebar">
-      <ul class="nav">
-        <li class="nav-item nav-profile">
-          <div class="nav-link">
-            <div class="user-wrapper">
-              <div class="profile-image">
-                <img src="../../../assets/images/faces-clipart/pic-1.png" alt="profile image">
-              </div>
-              <div class="text-wrapper">
-                <p class="profile-name">{{user.username}}</p>
-                <div>
-                  <small class="designation text-muted">{{user.group}}</small>
-                  <span class="status-indicator online"></span>
-                </div>
-              </div>
-            </div>
-            <button class="btn btn-success btn-block">New Test
-              <i class="mdi mdi-plus"></i>
-            </button>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">
-            <i class="menu-icon mdi mdi-television"></i>
-            <span class="menu-title">Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">
-            <i class="menu-icon mdi mdi-chart-line"></i>
-            <span class="menu-title">Results</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">
-            <i class="menu-icon mdi mdi-table"></i>
-            <span class="menu-title">Patients</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">
-            <i class="menu-icon mdi mdi-account"></i>
-            <span class="menu-title">Users</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <app-side-menu></app-side-menu>
     <!-- partial -->
     <div class="main-panel">
       <div class="content-wrapper">
@@ -99,7 +19,7 @@
                   <div class="float-right">
                     <p class="mb-0 text-right">Users</p>
                     <div class="fluid-container">
-                      <h3 class="font-weight-medium text-right mb-0">$65,650</h3>
+                      <h3 class="font-weight-medium text-right mb-0">{{users}}</h3>
                     </div>
                   </div>
                 </div>
@@ -119,7 +39,7 @@
                   <div class="float-right">
                     <p class="mb-0 text-right">Patients</p>
                     <div class="fluid-container">
-                      <h3 class="font-weight-medium text-right mb-0">3455</h3>
+                      <h3 class="font-weight-medium text-right mb-0">{{patients}}</h3>
                     </div>
                   </div>
                 </div>

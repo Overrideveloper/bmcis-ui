@@ -1,6 +1,11 @@
+declare var require: any;
 import { Component, OnInit } from '@angular/core';
 import { DateService } from '../../services/date/date.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+
+const config = require('../../config'),
+  URL = config.url;
 
 @Component({
   selector: 'app-dashboard',
@@ -13,11 +18,14 @@ export class DashboardComponent implements OnInit {
   public days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   public dayOfWeek;
   public user = {};
-  constructor(public dateService: DateService, public router: Router) { }
+  public users;
+  public patients;
+  constructor(public dateService: DateService, public router: Router, public http: HttpClient) { }
 
   ngOnInit() {
     this.loadDate();
     this.loadUser();
+    this.statistics();
   }
 
   loadDate() {
@@ -35,5 +43,19 @@ export class DashboardComponent implements OnInit {
   logOut() {
     this.router.navigate(['login']);
     localStorage.clear();
+  }
+
+  statistics() {
+    this.http.get(`${URL}user/list`).subscribe((data: any) => {
+      if (data.code === 200) {
+        this.users = data.data.length;
+      }
+    });
+
+    this.http.get(`${URL}patient/list`).subscribe((data: any) => {
+      if (data.code === 200) {
+        this.patients = data.data.length;
+      }
+    });
   }
 }

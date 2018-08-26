@@ -17,11 +17,20 @@ import { LoginComponent } from './components/login/login.component';
 import { CommonModule } from '@angular/common';
 import { SetupComponent } from './components/setup/setup.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NavComponent } from './components/nav/nav.component';
+import { SideMenuComponent } from './components/side-menu/side-menu.component';
+import { PatientsComponent } from './components/patients/patients.component';
+import { CreatePatientComponent } from './components/create-patient/create-patient.component';
+import { EditPatientComponent } from './components/edit-patient/edit-patient.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'setup', component: SetupComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'patient/list', component: PatientsComponent, canActivate: [AuthGuard] },
+  { path: 'patient/create', component: CreatePatientComponent, canActivate: [AuthGuard] },
+  { path: 'patient/edit/:id', component: EditPatientComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
@@ -29,7 +38,12 @@ const routes: Routes = [
     AppComponent,
     LoginComponent,
     SetupComponent,
-    DashboardComponent
+    DashboardComponent,
+    NavComponent,
+    SideMenuComponent,
+    PatientsComponent,
+    CreatePatientComponent,
+    EditPatientComponent
   ],
   imports: [
     CommonModule,

@@ -85,6 +85,10 @@ export class DateService {
       } else if (ampm === 'PM' && h >= 5) {
         timeOfDay = 'Evening';
       }
+
+      if (ampm === 'PM' && h === 12) {
+        timeOfDay = 'Afternoon';
+      }
     }
 
     return timeOfDay;
