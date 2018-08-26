@@ -9,19 +9,27 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
+import { AuthGuardService as AuthGuard, AuthGuardService } from './services/auth-guard/auth-guard.service';
+import { DateService } from './services/date/date.service';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { CommonModule } from '@angular/common';
-
+import { SetupComponent } from './components/setup/setup.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent }
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'setup', component: SetupComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    SetupComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +43,7 @@ const routes: Routes = [
     ToastrModule.forRoot(),
     RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
   ],
-  providers: [],
+  providers: [AuthGuardService, DateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -43,11 +43,11 @@
                 </div>
               </div>
               <div class="form-group">
-                <button [disabled]="auth.hash.length < 5 || auth.username === ''" class="btn btn-primary submit-btn btn-block">Login</button>
+                <button [disabled]="auth.hash.length < 7 || auth.username === ''" class="btn btn-primary submit-btn btn-block">Setup</button>
               </div>
-              <div *ngIf="userLength === 0" class="text-block text-center my-3">
-                <span class="text-small font-weight-semibold">New system?</span>
-                <a [routerLink]="['/setup']" routerLinkActive="router-link-active"  class="text-black text-small"> Setup for the first time.</a>
+              <div *ngIf="userLength !== 0" class="text-block text-center my-3">
+                <span class="text-small font-weight-semibold">Already have an account?</span>
+                <a [routerLink]="['/login']" routerLinkActive="router-link-active"  class="text-black text-small"> Login.</a>
               </div>
             </form>
           </div>
