@@ -17,6 +17,71 @@
                         <h2 style="font-size: 1.5em" class="card-title">Test Result</h2>
                         <fieldset>
                           <form *ngIf="result">
+                            <div hidden id="print">
+                              <h4><b>Tissue Sample</b></h4><hr/>
+                              <div class="form-group">
+                                <div class="input-group">
+                                  <img src="{{URL}}upload/{{result.image}}" />
+                                </div>
+                              </div>
+                              <div>
+                                <h4><b>Patient Details</b></h4><hr/>
+                                <div class="row">
+                                  <div class="form-group col-md-4">
+                                    <div class="input-group">
+                                      <p><b>Name:</b> {{patient.name}}</p>
+                                    </div>
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <div class="input-group">
+                                      <p><b>Gender:</b> {{patient.gender}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="form-group col-md-4">
+                                    <div class="input-group">
+                                      <p><b>Age:</b> {{patient.age}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="form-group col-md-4">
+                                    <div class="input-group">
+                                      <p><b>Height:</b> {{patient.height}} Cm</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="form-group col-md-4">
+                                    <div class="input-group">
+                                      <p><b>Weight:</b> {{patient.weight}} Kg</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="form-group col-md-4">
+                                    <div class="input-group">
+                                      <p><b>Blood Group (Phenotype):</b> {{patient.blood_group}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="form-group col-md-4">
+                                    <div class="input-group">
+                                      <p><b>Genotype:</b> {{patient.genotype}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <br/>
+                              <h4><b>Result</b></h4><hr/>
+                              <div class="form-group">
+                                <div class="input-group">
+                                  <p>Tissue sample diagnosed to be <b>{{result.result}}</b> for Invasive Ductal Carcinoma on <b>{{date.convertToDate(result.timestamp/1000)}}</b></p>
+                                </div>
+                              </div>
+                            </div>
                             <h4><b>Tissue Sample</b></h4><hr/>
                             <div class="form-group">
                               <div class="input-group">
@@ -70,7 +135,7 @@
                                 <p>Tissue sample diagnosed to be <b>{{result.result}}</b> for Invasive Ductal Carcinoma on <b>{{date.convertToDate(result.timestamp/1000)}}</b></p>
                               </div>
                             </div>
-                            <button class="btn btn-success mr-2">Print</button>
+                            <button (click)="print()" class="btn btn-warning mr-2">Print</button>
                           </form>
                         </fieldset>
                       </div>

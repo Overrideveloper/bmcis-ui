@@ -4,6 +4,7 @@ import { DateService } from '../../services/date/date.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import printJS from 'node_modules/print-js/src/index.js';
 
 const config = require('../../config'),
   URL = config.url;
@@ -17,6 +18,7 @@ export class PatientResultsComponent implements OnInit {
   public results = [];
   public patient_id;
   public name;
+  public p = 1;
 
   constructor(public route: ActivatedRoute, public http: HttpClient, public date: DateService, public toastr: ToastrService) { }
 
@@ -58,4 +60,10 @@ export class PatientResultsComponent implements OnInit {
     });
   }
 
+  print() {
+    const element = document.getElementById('print');
+    element.hidden = false;
+    printJS({ printable: 'print', type: 'html', header: `Breast Cancer Detection Suite - ${this.name}'s Test History`});
+    element.hidden = true;
+  }
 }

@@ -37,7 +37,11 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('user', JSON.stringify(user));
         this.toastr.info('Login successful!', 'BCDS');
         this.router.navigate(['dashboard']);
+      } else {
+        this.toastr.error(data.data, 'BCDS');
       }
+    }, error => {
+      this.toastr.error(error.error.data, 'BCDS');
     });
   }
 

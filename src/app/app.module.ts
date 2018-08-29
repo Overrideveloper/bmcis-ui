@@ -6,7 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AuthGuardService as AuthGuard, AuthGuardService } from './services/auth-guard/auth-guard.service';
@@ -68,6 +69,7 @@ const routes: Routes = [
     CommonModule,
     BrowserModule,
     FormsModule,
+    NgxPaginationModule,
     ReactiveFormsModule,
     HttpClientModule,
     LoadingBarHttpClientModule,

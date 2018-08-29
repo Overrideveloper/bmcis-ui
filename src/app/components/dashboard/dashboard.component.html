@@ -19,7 +19,7 @@
                   <div class="float-right">
                     <p class="mb-0 text-right">Users</p>
                     <div class="fluid-container">
-                      <h3 class="font-weight-medium text-right mb-0">{{users}}</h3>
+                      <h3 *ngIf="users" class="font-weight-medium text-right mb-0">{{users}}</h3>
                     </div>
                   </div>
                 </div>
@@ -39,7 +39,7 @@
                   <div class="float-right">
                     <p class="mb-0 text-right">Patients</p>
                     <div class="fluid-container">
-                      <h3 class="font-weight-medium text-right mb-0">{{patients}}</h3>
+                      <h3 *ngIf="patients" class="font-weight-medium text-right mb-0">{{patients}}</h3>
                     </div>
                   </div>
                 </div>
@@ -59,7 +59,7 @@
                   <div class="float-right">
                     <p class="mb-0 text-right">Tests</p>
                     <div class="fluid-container">
-                      <h3 class="font-weight-medium text-right mb-0">{{tests}}</h3>
+                      <h3 *ngIf="tests" class="font-weight-medium text-right mb-0">{{tests}}</h3>
                     </div>
                   </div>
                 </div>
@@ -76,15 +76,15 @@
             <div class="card card-weather">
               <div class="card-body">
                 <div class="weather-date-location">
-                  <h3>{{day}}</h3>
+                  <h3 *ngIf="day">{{day}}</h3>
                   <p class="text-gray">
-                    <span class="weather-date">{{date}}</span>
+                    <span *ngIf="date" class="weather-date">{{date}}</span>
                   </p>
                 </div>
                 <div class="weather-data d-flex">
                   <div class="mr-auto">
                     <h4 class="display-3">Hello!</h4>
-                    <p>
+                    <p *ngIf="dayOfWeek">
                       Good {{dayOfWeek}}.
                     </p>
                   </div>
@@ -167,7 +167,7 @@
                 <div class="wrapper d-flex justify-content-between">
                   <div class="side-left">
                     <p class="mb-2">Positive Results</p>
-                    <p class="display-3 mb-4 font-weight-light">{{positives}}</p>
+                    <p *ngIf="positives" class="display-3 mb-4 font-weight-light">{{positives}}</p>
                   </div>
                   <div class="side-right">
                     <small class="text-muted">All-time</small>
@@ -176,7 +176,7 @@
                 <div class="wrapper d-flex justify-content-between">
                   <div class="side-left">
                     <p class="mb-2">Negative Results</p>
-                    <p class="display-3 mb-5 font-weight-light">{{negatives}}</p>
+                    <p *ngIf="negatives" class="display-3 mb-5 font-weight-light">{{negatives}}</p>
                   </div>
                   <div class="side-right">
                     <small class="text-muted">All-time</small>

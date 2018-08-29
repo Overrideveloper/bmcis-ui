@@ -13,10 +13,25 @@
             <div class="card">
               <div class="card-body">
                 <input (input)="filter($event)" [(ngModel)]="query" class="form-control col-md-3" placeholder="Search by username..." aria-label="Search" aria-describedby="colored-addon2">
+                <button (click)="print()" class="btn btn-warning" style="margin-left: 0.3em; float: right;">Print</button>
                 <a [routerLink]="['/user/create']" routerLinkActive="router-link-active"  style="float: right;" class="btn btn-success">New User
                   <i class="mdi mdi-plus"></i>
                 </a>
                 <div class="table-responsive">
+                  <table hidden id="print" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Username</th>
+                        <th>Group</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let user of users">
+                        <td>{{user.username}}</td>
+                        <td>{{user.group}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                   <table class="table table-striped">
                     <thead>
                       <tr>
@@ -27,7 +42,7 @@
                       </tr>
                     </thead>
                     <tbody *ngIf="query === ''">
-                      <tr *ngFor="let user of users">
+                      <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
                         <td></td>
                         <td>{{user.username}}</td>
                         <td>{{user.group}}</td>
@@ -37,7 +52,7 @@
                       </tr>
                     </tbody>
                     <tbody *ngIf="query !== ''">
-                      <tr *ngFor="let user of queryArray">
+                      <tr *ngFor="let user of queryArray | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
                         <td></td>
                         <td>{{user.username}}</td>
                         <td>{{user.group}}</td>
@@ -47,6 +62,7 @@
                       </tr>
                     </tbody>
                   </table>
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
                 </div>
               </div>
             </div>

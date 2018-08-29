@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert';
+import printJS from 'node_modules/print-js/src/index.js';
 
 const config = require('../../config'),
   URL = config.url;
@@ -17,6 +18,7 @@ export class PatientsComponent implements OnInit {
   public init = [];
   public queryArray = [];
   public query = '';
+  public p = 1;
   constructor(public router: Router, public http: HttpClient) { }
 
   ngOnInit() {
@@ -30,6 +32,13 @@ export class PatientsComponent implements OnInit {
         this.init = this.patients;
       }
     });
+  }
+
+  print() {
+    const element = document.getElementById('print');
+    element.hidden = false;
+    printJS({ printable: 'print', type: 'html', header: 'Breast Cancer Detection Suite - Patients'});
+    element.hidden = true;
   }
 
   delete(id) {

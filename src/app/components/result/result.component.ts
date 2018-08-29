@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DateService } from '../../services/date/date.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import printJS from 'node_modules/print-js/src/index.js';
 
 const config = require('../../config'),
   URL = config.url;
@@ -23,6 +24,13 @@ export class ResultComponent implements OnInit {
     this.URL = URL;
     this.id = this.route.snapshot.paramMap.get('test_id');
     this.loadReport();
+  }
+
+  print() {
+    const element = document.getElementById('print');
+    element.hidden = false;
+    printJS({ printable: 'print', type: 'html', header: `Breast Cancer Detection Suite - ${this.patient.name}'s Test Result`});
+    element.hidden = true;
   }
 
   loadReport() {

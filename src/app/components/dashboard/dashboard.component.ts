@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit {
   public date;
   public days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   public dayOfWeek;
-  public user = {};
   public users;
   public patients;
   public tests;
@@ -27,7 +26,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.loadDate();
-    this.loadUser();
     this.statistics();
   }
 
@@ -37,10 +35,6 @@ export class DashboardComponent implements OnInit {
     this.day = this.days[date.getDay()];
     this.date = this.dateService.convertToDate(timestamp / 1000);
     this.dayOfWeek = this.dateService.getTimeOfDay(timestamp / 1000);
-  }
-
-  loadUser() {
-    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
   logOut() {

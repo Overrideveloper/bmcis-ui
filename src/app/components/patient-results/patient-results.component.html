@@ -13,7 +13,24 @@
             <div class="card">
               <div class="card-body">
                 <h4>Test History for {{name}}</h4>
+                <button (click)="print()" class="btn btn-warning" style="margin-left: 0.3em; float: right;">Print</button>
                 <div class="table-responsive">
+                  <table id="print" hidden class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Date | Time</th>
+                        <th>Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let result of results">
+                        <td>{{date.convertToDate(result.timestamp/1000)}}</td>
+                        <td *ngIf="result.result === 'negative'" style="color: green">Negative</td>
+                        <td *ngIf="result.result === 'positive'" style="color: crimson">Positive</td>
+                      </tr>
+                    </tbody>
+                  </table>
                   <table class="table table-striped">
                     <thead>
                       <tr>
@@ -24,7 +41,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let result of results">
+                      <tr *ngFor="let result of results | paginate: {itemsPerPage: 10, currentPage: p}; let i = index">
                         <td></td>
                         <td>{{date.convertToDate(result.timestamp/1000)}}</td>
                         <td *ngIf="result.result === 'negative'" style="color: green">Negative</td>
@@ -37,6 +54,7 @@
                       </tr>
                     </tbody>
                   </table>
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
                 </div>
               </div>
             </div>

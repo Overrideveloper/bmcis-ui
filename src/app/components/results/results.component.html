@@ -13,6 +13,7 @@
             <div class="card">
               <div class="card-body">
                 <input (input)="filter($event)" [(ngModel)]="query" class="form-control col-md-3" placeholder="Search by patient name..." aria-label="Search" aria-describedby="colored-addon2">
+                <button (click)="print()" class="btn btn-warning" style="margin: 0.5em 0.5em 1em 0.5em; float: right;">Print</button>
                 <button (click)="loadNegative()" [disabled]="type === 'neg'" style="float: right; margin: 0.5em 0.5em 1em 0.5em;" class="btn btn-success">
                   <i class="mdi mdi-minus"></i>Negative
                 </button>
@@ -23,6 +24,23 @@
                   <i class="mdi mdi-menu"></i>All
                 </button>
                 <div class="table-responsive">
+                  <table hidden id="print" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Patient</th>
+                        <th>Date | Time</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let result of results">
+                        <td>{{result.patient}}</td>
+                        <td>{{result.date}}</td>
+                        <td *ngIf="result.result === 'negative'" style="color: green">Negative</td>
+                        <td *ngIf="result.result === 'positive'" style="color: crimson">Positive</td>
+                      </tr>
+                    </tbody>
+                  </table>
                   <table class="table table-striped">
                     <thead>
                       <tr>
@@ -34,7 +52,7 @@
                       </tr>
                     </thead>
                     <tbody *ngIf="query === ''">
-                      <tr *ngFor="let result of results">
+                      <tr *ngFor="let result of results | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
                         <td></td>
                         <td>{{result.patient}}</td>
                         <td>{{result.date}}</td>
@@ -48,7 +66,7 @@
                       </tr>
                     </tbody>
                     <tbody *ngIf="query !== ''">
-                      <tr *ngFor="let result of queryArray">
+                      <tr *ngFor="let result of queryArray | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
                         <td></td>
                         <td>{{result.patient}}</td>
                         <td>{{result.date}}</td>
@@ -62,6 +80,7 @@
                       </tr>
                     </tbody>
                   </table>
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
                 </div>
               </div>
             </div>

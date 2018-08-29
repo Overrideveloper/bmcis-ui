@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DateService } from '../../services/date/date.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import printJS from 'node_modules/print-js/src/index.js';
 
 const config = require('../../config'),
   URL = config.url;
@@ -18,10 +19,18 @@ export class ResultsComponent implements OnInit {
   public queryArray = [];
   public type = '';
   public query = '';
+  public p = 1;
   constructor(public router: Router, public http: HttpClient, public date: DateService) { }
 
   ngOnInit() {
     this.loadResults();
+  }
+
+  print() {
+    const element = document.getElementById('print');
+    element.hidden = false;
+    printJS({ printable: 'print', type: 'html', header: 'Breast Cancer Detection Suite - Test History'});
+    element.hidden = true;
   }
 
   loadResults() {
