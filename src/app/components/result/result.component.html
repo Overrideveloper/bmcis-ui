@@ -1,0 +1,96 @@
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <app-nav></app-nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <app-side-menu></app-side-menu>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+              <div class="col-md-12 d-flex align-items-stretch">
+                <div class="row flex-grow">
+                  <div class="col-12 grid-margin stretch-card">
+                    <div class="card">
+                      <div class="card-body">
+                        <h2 style="font-size: 1.5em" class="card-title">Test Result</h2>
+                        <fieldset>
+                          <form *ngIf="result">
+                            <h4><b>Tissue Sample</b></h4><hr/>
+                            <div class="form-group">
+                              <div class="input-group">
+                                <img src="{{URL}}upload/{{result.image}}" />
+                              </div>
+                            </div>
+                            <div>
+                              <h4><b>Patient Details</b></h4><hr/>
+                              <div class="row">
+                                <div class="form-group col-md-4">
+                                  <div class="input-group">
+                                    <p><b>Name:</b> {{patient.name}}</p>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <div class="input-group">
+                                    <p><b>Gender:</b> {{patient.gender}}</p>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <div class="input-group">
+                                    <p><b>Age:</b> {{patient.age}}</p>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <div class="input-group">
+                                    <p><b>Height:</b> {{patient.height}} Cm</p>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <div class="input-group">
+                                    <p><b>Weight:</b> {{patient.weight}} Kg</p>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <div class="input-group">
+                                    <p><b>Blood Group (Phenotype):</b> {{patient.blood_group}}</p>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <div class="input-group">
+                                    <p><b>Genotype:</b> {{patient.genotype}}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <br/>
+                            <h4><b>Result</b></h4><hr/>
+                            <div class="form-group">
+                              <div class="input-group">
+                                <p>Tissue sample diagnosed to be <b>{{result.result}}</b> for Invasive Ductal Carcinoma on <b>{{date.convertToDate(result.timestamp/1000)}}</b></p>
+                              </div>
+                            </div>
+                            <button class="btn btn-success mr-2">Print</button>
+                          </form>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="container-fluid clearfix">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
+              The Override Dev.</span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>

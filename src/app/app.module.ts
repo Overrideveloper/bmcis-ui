@@ -27,6 +27,8 @@ import { UsersComponent } from './components/users/users.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { ResultsComponent } from './components/results/results.component';
 import { TestComponent } from './components/test/test.component';
+import { ResultComponent } from './components/result/result.component';
+import { PatientResultsComponent } from './components/patient-results/patient-results.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -40,6 +42,8 @@ const routes: Routes = [
   { path: 'user/create', component: CreateUserComponent, canActivate: [AuthGuard] },
   { path: 'result/list', component: ResultsComponent, canActivate: [AuthGuard] },
   { path: 'diagnosis/run', component: TestComponent, canActivate: [AuthGuard] },
+  { path: 'result/patient/:patient_id', component: PatientResultsComponent, canActivate: [AuthGuard] },
+  { path: 'diagnosis/result/:test_id', component: ResultComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
@@ -56,7 +60,9 @@ const routes: Routes = [
     UsersComponent,
     CreateUserComponent,
     ResultsComponent,
-    TestComponent
+    TestComponent,
+    ResultComponent,
+    PatientResultsComponent
   ],
   imports: [
     CommonModule,

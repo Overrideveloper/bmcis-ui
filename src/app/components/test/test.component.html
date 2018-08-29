@@ -13,7 +13,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Diagnosis Form</h4>
-                  <form class="form-sample">
+                  <form class="form-sample" (submit)="submit()">
                     <p class="card-description">
                       Biopsy Slide Image Preview
                     </p>
@@ -21,7 +21,8 @@
                       <div class="col-md-6">
                         <div class="form-group row">
                           <div class="col-sm-9">
-                            <img src="../../../assets/tersoo.jpg" style="max-width: 150px; max-height: 150px;" />
+                            <img *ngIf="image" src="{{URL}}upload/{{image}}" style="max-width: 150px; max-height: 150px;" />
+                            <img *ngIf="!image" src="https://via.placeholder.com/150x150" style="max-width: 150px; max-height: 150px;" />
                           </div>
                         </div>
                       </div>
@@ -45,12 +46,12 @@
                         <div class="form-group row">
                           <label class="col-sm-3 col-form-label">Biopsy Slide Image</label>
                           <div class="col-sm-9">
-                            <input type="file" name="image" class="form-control" />
+                            <input (change)="onFileChange($event)" type="file" name="image" class="form-control" />
                           </div>
                         </div>
                       </div>
                     </div>
-                    <button [disabled]="patient_id === '-- Select a patient --'" type="submit" class="btn btn-success mr-2">Submit</button>
+                    <button [disabled]="patient_id === '-- Select a patient --' || !image" type="submit" class="btn btn-success mr-2">Submit</button>
                   </form>
                 </div>
               </div>

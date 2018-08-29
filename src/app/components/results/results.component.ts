@@ -35,8 +35,8 @@ export class ResultsComponent implements OnInit {
           this.http.post(`${URL}patient/read`, form).subscribe((data: any) => {
             if (data.code === 200) {
               const patient = data.data['name'], date = this.date.convertToDate(element.timestamp / 1000),
-                result = element.result;
-              const itr = { patient, date, result };
+                result = element.result, id = element.id;
+              const itr = { patient, date, result, id };
               results.push(itr);
               len -= 1;
               if (len === 0) {

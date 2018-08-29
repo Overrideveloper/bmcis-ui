@@ -45,9 +45,12 @@
                         <td>{{patient.blood_group}}</td>
                         <td>{{patient.genotype}}</td>
                         <td>
-                          <i class="mdi mdi-delete text-info" style="font-size: 1.5em;" (click)="delete(patient.id)"></i>
-                          <a routerLink="/patient/edit/{{patient.id}}" routerLinkActive="router-link-active" >
-                            <i class="mdi mdi-pencil text-info" style="font-size: 1.5em;"></i>
+                          <i title="Delete" class="mdi mdi-delete text-info" style="font-size: 1.3em;" (click)="delete(patient.id)"></i>
+                          <a title="Edit" routerLink="/patient/edit/{{patient.id}}" routerLinkActive="router-link-active" >
+                            <i class="mdi mdi-pencil text-info" style="font-size: 1.3em; margin-left:0.1em;"></i>
+                          </a>
+                          <a title="View Tests" routerLink="/result/patient/{{patient.id}}" routerLinkActive="router-link-active" >
+                            <i class="mdi mdi-folder-open text-info" style="font-size: 1.3em; margin-left:0.1em;"></i>
                           </a>
                         </td>
                       </tr>
