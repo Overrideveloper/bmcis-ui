@@ -86,4 +86,9 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+
+  convertToPercentage(float) {
+    const _float = float * 100;
+    return _float.toFixed(2);
+  }
 }

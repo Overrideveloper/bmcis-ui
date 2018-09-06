@@ -46,6 +46,8 @@ export class TestComponent implements OnInit {
       this.http.post(`${URL}upload`, image).subscribe((data: any) => {
         if (data.code === 200) {
           this.image = data.filename;
+        } else {
+          this.toastr.info(data.message, 'BCDS');
         }
       });
     }

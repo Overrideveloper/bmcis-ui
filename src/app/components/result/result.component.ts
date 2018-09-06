@@ -57,7 +57,6 @@ export class ResultComponent implements OnInit {
   }
 
   convertToPercentage(float) {
-    console.log(float);
     const _float = float * 100;
     return _float.toFixed(2);
   }

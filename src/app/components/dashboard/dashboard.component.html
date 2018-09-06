@@ -185,13 +185,13 @@
                 <div class="wrapper">
                   <div class="d-flex justify-content-between">
                     <p class="mb-2">Positive Results (%) </p>
-                    <p class="mb-2 text-primary">{{((positives / tests) * 100)}}</p>
+                    <p class="mb-2 text-primary">{{convertToPercentage((positives / tests))}}</p>
                   </div>
                 </div>
                 <div class="wrapper mt-4">
                   <div class="d-flex justify-content-between">
                     <p class="mb-2">Negative Results (%)</p>
-                    <p class="mb-2 text-success">{{((negatives / tests) * 100)}}</p>
+                    <p class="mb-2 text-success">{{convertToPercentage((negatives / tests))}}</p>
                   </div>
                 </div>
               </div>
