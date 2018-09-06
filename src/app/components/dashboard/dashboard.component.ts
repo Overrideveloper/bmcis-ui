@@ -25,6 +25,9 @@ export class DashboardComponent implements OnInit {
   constructor(public dateService: DateService, public router: Router, public http: HttpClient) { }
 
   ngOnInit() {
+    setInterval(() => {
+      this.loadDate();
+    }, 30000);
     this.loadDate();
     this.statistics();
   }

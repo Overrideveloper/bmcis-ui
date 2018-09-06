@@ -20,6 +20,47 @@ export class DateService {
     }
   }
 
+  convertToDateOnly(timestamp) {
+    // https://www.w3schools.com/jsref/jsref_getmonth.asp
+    const month = new Array();
+    month[0] = 'January';
+    month[1] = 'February';
+    month[2] = 'March';
+    month[3] = 'April';
+    month[4] = 'May';
+    month[5] = 'June';
+    month[6] = 'July';
+    month[7] = 'August';
+    month[8] = 'September';
+    month[9] = 'October';
+    month[10] = 'November';
+    month[11] = 'December';
+
+    const d = new Date(timestamp * 1000),	// Convert the passed timestamp to milliseconds
+      yyyy = d.getFullYear(),
+      mm = d.getMonth(),	// Months are zero based.
+      dd = d.getDate(),
+      hh = d.getHours(),
+      min = ('0' + d.getMinutes()).slice(-2); // Add leading 0.
+
+    let h = hh, ampm = 'AM', date;
+
+    if (hh > 12) {
+      h = hh - 12;
+      ampm = 'PM';
+    } else if (hh === 12) {
+      h = 12;
+      ampm = 'PM';
+    } else if (hh === 0) {
+      h = 12;
+    }
+
+
+    // ie: 2013-02-18, 8:35 AM
+    date = `${month[mm]} ${dd}${this.setOrdinal(dd)} ${yyyy}`;
+    return date;
+  }
+
   convertToDate(timestamp) {
     // https://www.w3schools.com/jsref/jsref_getmonth.asp
     const month = new Array();

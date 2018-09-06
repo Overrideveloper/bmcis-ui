@@ -18,12 +18,15 @@ export class ResultComponent implements OnInit {
   public patient;
   public id;
   public URL;
+  public datetime;
   constructor(public route: ActivatedRoute, public http: HttpClient, public date: DateService) { }
 
   ngOnInit() {
     this.URL = URL;
     this.id = this.route.snapshot.paramMap.get('test_id');
     this.loadReport();
+    const timestamp = Date.now();
+    this.datetime = this.date.convertToDateOnly(timestamp / 1000);
   }
 
   print() {
@@ -51,5 +54,11 @@ export class ResultComponent implements OnInit {
         });
       }
     });
+  }
+
+  convertToPercentage(float) {
+    console.log(float);
+    const _float = float * 100;
+    return _float.toFixed(2);
   }
 }

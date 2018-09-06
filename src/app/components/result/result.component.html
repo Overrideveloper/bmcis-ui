@@ -27,49 +27,45 @@
                               <div>
                                 <h4><b>Patient Details</b></h4><hr/>
                                 <div class="row">
-                                  <div class="form-group col-md-4">
+                                  <div class="form-group col-md-6">
                                     <div class="input-group">
-                                      <p><b>Name:</b> {{patient.name}}</p>
+                                      <span><b>Name:</b> {{patient.name}}</span>
                                     </div>
                                   </div>
-                                  <div class="form-group col-md-4">
+                                  <div class="form-group col-md-6">
                                     <div class="input-group">
-                                      <p><b>Gender:</b> {{patient.gender}}</p>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="form-group col-md-4">
-                                    <div class="input-group">
-                                      <p><b>Age:</b> {{patient.age}}</p>
+                                      <span><b>Gender:</b> {{patient.gender}}</span>
                                     </div>
                                   </div>
                                 </div>
                                 <div class="row">
-                                  <div class="form-group col-md-4">
+                                  <div class="form-group col-md-6">
                                     <div class="input-group">
-                                      <p><b>Height:</b> {{patient.height}} Cm</p>
+                                      <span><b>Age:</b> {{patient.age}}</span>
+                                    </div>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <div class="input-group">
+                                      <span><b>Height:</b> {{patient.height}} cm</span>
                                     </div>
                                   </div>
                                 </div>
                                 <div class="row">
-                                  <div class="form-group col-md-4">
+                                  <div class="form-group col-md-6">
                                     <div class="input-group">
-                                      <p><b>Weight:</b> {{patient.weight}} Kg</p>
+                                      <span><b>Weight:</b> {{patient.weight}} kg</span>
+                                    </div>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <div class="input-group">
+                                      <span><b>Blood Group (Phenotype):</b> {{patient.blood_group}}</span>
                                     </div>
                                   </div>
                                 </div>
                                 <div class="row">
-                                  <div class="form-group col-md-4">
+                                  <div class="form-group col-md-6">
                                     <div class="input-group">
-                                      <p><b>Blood Group (Phenotype):</b> {{patient.blood_group}}</p>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="form-group col-md-4">
-                                    <div class="input-group">
-                                      <p><b>Genotype:</b> {{patient.genotype}}</p>
+                                      <span><b>Genotype:</b> {{patient.genotype}}</span>
                                     </div>
                                   </div>
                                 </div>
@@ -78,7 +74,19 @@
                               <h4><b>Result</b></h4><hr/>
                               <div class="form-group">
                                 <div class="input-group">
-                                  <p>Tissue sample diagnosed to be <b>{{result.result}}</b> for Invasive Ductal Carcinoma on <b>{{date.convertToDate(result.timestamp/1000)}}</b></p>
+                                  <p>Tissue sample diagnosed to be <b>{{result.result}}</b> for Invasive Ductal Carcinoma with <b>{{convertToPercentage(result.confidence)}}% confidence</b> on <b>{{date.convertToDate(result.timestamp/1000)}}</b></p>
+                                </div>
+                              </div><hr/>
+                              <div style="margin-top: 5em" class="row">
+                                <div class="form-group col-md-6">
+                                  <div class="input-group">
+                                    <span><b>Date: </b>{{datetime}}</span>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <div class="input-group">
+                                    <span><b>Authorized Signature:</b> ___________________________</span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -108,12 +116,12 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                   <div class="input-group">
-                                    <p><b>Height:</b> {{patient.height}} Cm</p>
+                                    <p><b>Height:</b> {{patient.height}} cm</p>
                                   </div>
                                 </div>
                                 <div class="form-group col-md-4">
                                   <div class="input-group">
-                                    <p><b>Weight:</b> {{patient.weight}} Kg</p>
+                                    <p><b>Weight:</b> {{patient.weight}} kg</p>
                                   </div>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -132,7 +140,7 @@
                             <h4><b>Result</b></h4><hr/>
                             <div class="form-group">
                               <div class="input-group">
-                                <p>Tissue sample diagnosed to be <b>{{result.result}}</b> for Invasive Ductal Carcinoma on <b>{{date.convertToDate(result.timestamp/1000)}}</b></p>
+                                <p>Tissue sample diagnosed to be <b>{{result.result}}</b> for Invasive Ductal Carcinoma with <b>{{convertToPercentage(result.confidence)}}% confidence</b> on <b>{{date.convertToDate(result.timestamp/1000)}}</b></p>
                               </div>
                             </div>
                             <button (click)="print()" class="btn btn-warning mr-2">Print</button>
