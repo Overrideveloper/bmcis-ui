@@ -5,7 +5,8 @@
         <div class="col-lg-4 mx-auto">
           <div class="auto-form-wrapper">
             <form (submit)="submit()">
-              <div class="form-group">
+              <img src="../../../assets/images/bcmis2.png" style="display: block; margin: auto; max-width: 200px; max-height: 200px;" />
+              <div class="form-group" style="margin-top: 2em;">
                 <label class="label">Username</label>
                 <div class="input-group">
                   <input type="text" [(ngModel)]="auth.username" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Username">
@@ -47,7 +48,11 @@
               </div>
               <div *ngIf="userLength === 0" class="text-block text-center my-3">
                 <span class="text-small font-weight-semibold">New system?</span>
-                <a [routerLink]="['/setup']" routerLinkActive="router-link-active"  class="text-black text-small"> Setup for the first time.</a>
+                <a [routerLink]="['/setup']" routerLinkActive="router-link-active" class="text-black text-small"> Setup for the first time.</a>
+              <br/></div>
+              <div>
+                <a [routerLink]="['/cancer-information']" routerLinkActive="router-link-active" class="col-md-6 text-info text-small">Helpful cancer resources</a>
+                <a [routerLink]="['/system-summary']" routerLinkActive="router-link-active" class="col-md-6 text-info text-small">Find out more about BCDS</a>
               </div>
             </form>
           </div>

@@ -30,11 +30,15 @@ import { ResultsComponent } from './components/results/results.component';
 import { TestComponent } from './components/test/test.component';
 import { ResultComponent } from './components/result/result.component';
 import { PatientResultsComponent } from './components/patient-results/patient-results.component';
+import { CancerComponent } from './components/cancer/cancer.component';
+import { SummaryComponent } from './components/summary/summary.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'setup', component: SetupComponent },
+  { path: 'system-summary', component: SummaryComponent },
+  { path: 'cancer-information', component: CancerComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'patient/list', component: PatientsComponent, canActivate: [AuthGuard] },
   { path: 'patient/create', component: CreatePatientComponent, canActivate: [AuthGuard] },
@@ -63,7 +67,9 @@ const routes: Routes = [
     ResultsComponent,
     TestComponent,
     ResultComponent,
-    PatientResultsComponent
+    PatientResultsComponent,
+    CancerComponent,
+    SummaryComponent
   ],
   imports: [
     CommonModule,
