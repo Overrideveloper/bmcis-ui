@@ -59,7 +59,7 @@
                   <div class="float-right">
                     <p class="mb-0 text-right">Tests</p>
                     <div class="fluid-container">
-                      <h3 *ngIf="tests" class="font-weight-medium text-right mb-0">{{tests}}</h3>
+                      <h3 *ngIf="testCount" class="font-weight-medium text-right mb-0">{{testCount | async}}</h3>
                     </div>
                   </div>
                 </div>
@@ -167,7 +167,7 @@
                 <div class="wrapper d-flex justify-content-between">
                   <div class="side-left">
                     <p class="mb-2">Positive Results</p>
-                    <p *ngIf="positives" class="display-3 mb-4 font-weight-light">{{positives}}</p>
+                    <p *ngIf="positiveCount" class="display-3 mb-4 font-weight-light">{{positiveCount | async}}</p>
                   </div>
                   <div class="side-right">
                     <small class="text-muted">All-time</small>
@@ -176,7 +176,7 @@
                 <div class="wrapper d-flex justify-content-between">
                   <div class="side-left">
                     <p class="mb-2">Negative Results</p>
-                    <p *ngIf="negatives" class="display-3 mb-5 font-weight-light">{{negatives}}</p>
+                    <p *ngIf="negativeCount" class="display-3 mb-5 font-weight-light">{{negativeCount | async}}</p>
                   </div>
                   <div class="side-right">
                     <small class="text-muted">All-time</small>
@@ -185,13 +185,13 @@
                 <div class="wrapper">
                   <div class="d-flex justify-content-between">
                     <p class="mb-2">Positive Results (%) </p>
-                    <p class="mb-2 text-primary">{{convertToPercentage((positives / tests))}}</p>
+                    <p class="mb-2 text-primary">{{convertToPercentage(((positiveCount | async)  / (testCount | async)))}}</p>
                   </div>
                 </div>
                 <div class="wrapper mt-4">
                   <div class="d-flex justify-content-between">
                     <p class="mb-2">Negative Results (%)</p>
-                    <p class="mb-2 text-success">{{convertToPercentage((negatives / tests))}}</p>
+                    <p class="mb-2 text-success">{{convertToPercentage(((negativeCount | async) / (testCount | async)))}}</p>
                   </div>
                 </div>
               </div>

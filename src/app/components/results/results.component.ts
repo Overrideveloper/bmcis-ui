@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import printJS from 'node_modules/print-js/src/index.js';
 
+import { select } from '@angular-redux/store';
+
 const config = require('../../config'),
   URL = config.url;
 
@@ -14,7 +16,10 @@ const config = require('../../config'),
   styleUrls: ['./results.component.css']
 })
 export class ResultsComponent implements OnInit {
-  public results = [];
+  @select() results;
+  @select() positiveResults;
+  @select() negativeResults;
+
   public init = [];
   public queryArray = [];
   public type = '';
@@ -34,6 +39,7 @@ export class ResultsComponent implements OnInit {
   }
 
   loadResults() {
+    this.type = 'all';
     this.http.get(`${URL}test/list`).subscribe((data: any) => {
       if (data.code === 200 && data.data.length !== 0) {
         const raw = data.data, results = [];
@@ -50,21 +56,17 @@ export class ResultsComponent implements OnInit {
               results.push(itr);
               len -= 1;
               if (len === 0) {
-                this.results = results;
-                this.init = this.results;
-                this.type = 'all';
+                this.init = results;
               }
             }
           });
         });
-      } else {
-        this.results = [];
-        this.type = 'all';
       }
     });
   }
 
   loadPositive() {
+    this.type = 'pos';
     this.http.get(`${URL}test/positive`).subscribe((data: any) => {
       if (data.code === 200 && data.data.length !== 0) {
         const raw = data.data, results = [];
@@ -76,26 +78,22 @@ export class ResultsComponent implements OnInit {
           this.http.post(`${URL}patient/read`, form).subscribe((data: any) => {
             if (data.code === 200) {
               const patient = data.data['name'], date = this.date.convertToDate(element.timestamp / 1000),
-                result = element.result;
-              const itr = { patient, date, result };
+                result = element.result, id = element.id;
+              const itr = { patient, date, result, id };
               results.push(itr);
               len -= 1;
               if (len === 0) {
-                this.results = results;
-                this.init = this.results;
-                this.type = 'pos';
+                this.init = results;
               }
             }
           });
         });
-      } else {
-        this.results = [];
-        this.type = 'pos';
       }
     });
   }
 
   loadNegative() {
+    this.type = 'neg';
     this.http.get(`${URL}test/negative`).subscribe((data: any) => {
       if (data.code === 200 && data.data.length !== 0) {
         const raw = data.data, results = [];
@@ -107,21 +105,16 @@ export class ResultsComponent implements OnInit {
           this.http.post(`${URL}patient/read`, form).subscribe((data: any) => {
             if (data.code === 200) {
               const patient = data.data['name'], date = this.date.convertToDate(element.timestamp / 1000),
-                result = element.result;
-              const itr = { patient, date, result };
+                result = element.result, id = element.id;
+              const itr = { patient, date, result, id };
               results.push(itr);
               len -= 1;
               if (len === 0) {
-                this.results = results;
-                this.init = this.results;
-                this.type = 'neg';
+                this.init = results;
               }
             }
           });
         });
-      } else {
-        this.results = [];
-        this.type = 'neg';
       }
     });
   }
