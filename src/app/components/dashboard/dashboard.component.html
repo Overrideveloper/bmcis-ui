@@ -19,7 +19,7 @@
                   <div class="float-right">
                     <p class="mb-0 text-right">Users</p>
                     <div class="fluid-container">
-                      <h3 *ngIf="users" class="font-weight-medium text-right mb-0">{{users}}</h3>
+                      <h3 *ngIf="userCount" class="font-weight-medium text-right mb-0">{{userCount | async}}</h3>
                     </div>
                   </div>
                 </div>
@@ -39,7 +39,7 @@
                   <div class="float-right">
                     <p class="mb-0 text-right">Patients</p>
                     <div class="fluid-container">
-                      <h3 *ngIf="patients" class="font-weight-medium text-right mb-0">{{patients}}</h3>
+                      <h3 *ngIf="patientCount" class="font-weight-medium text-right mb-0">{{patientCount | async}}</h3>
                     </div>
                   </div>
                 </div>

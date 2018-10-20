@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { NgRedux, NgReduxModule } from '@angular-redux/store';
+import { IAppState, rootReducer, INITIAL_STATE } from './store/store';
+
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -80,6 +83,7 @@ const routes: Routes = [
     HttpClientModule,
     LoadingBarHttpClientModule,
     LoadingBarRouterModule,
+    NgReduxModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })
@@ -87,4 +91,8 @@ const routes: Routes = [
   providers: [AuthGuardService, DateService, AdminService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(ngRedux: NgRedux<IAppState>) {
+    ngRedux.configureStore(rootReducer, INITIAL_STATE);
+  }
+ }

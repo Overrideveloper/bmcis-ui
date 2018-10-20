@@ -5,6 +5,10 @@ import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert';
 import printJS from 'node_modules/print-js/src/index.js';
 
+import { select, NgRedux } from '@angular-redux/store';
+import { IAppState } from '../../store/store';
+import { DELETE_PATIENT } from 'src/app/actions/patient';
+
 const config = require('../../config'),
   URL = config.url;
 
@@ -14,12 +18,12 @@ const config = require('../../config'),
   styleUrls: ['./patients.component.css']
 })
 export class PatientsComponent implements OnInit {
-  public patients = [];
+  @select() patients;
   public init = [];
   public queryArray = [];
   public query = '';
   public p = 1;
-  constructor(public router: Router, public http: HttpClient) { }
+  constructor(public router: Router, public http: HttpClient, private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
     this.loadPatients();
@@ -28,8 +32,7 @@ export class PatientsComponent implements OnInit {
   loadPatients() {
     this.http.get(`${URL}patient/list`).subscribe((data: any) => {
       if (data.code === 200) {
-        this.patients = data.data;
-        this.init = this.patients;
+        this.init = data.data;
       }
     });
   }
@@ -54,7 +57,7 @@ export class PatientsComponent implements OnInit {
         form.append('id', id);
         this.http.post(`${URL}patient/delete`, form).subscribe((data: any) => {
           if (data.code === 200) {
-            this.loadPatients();
+            this.ngRedux.dispatch({ type: DELETE_PATIENT, id: id });
             swal('Poof! Patient deleted!', {
               icon: 'success',
             });

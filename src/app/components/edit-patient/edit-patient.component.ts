@@ -4,6 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 
+import { select, NgRedux } from '@angular-redux/store';
+import { IAppState } from '../../store/store';
+import { EDIT_PATIENT, DELETE_PATIENT } from 'src/app/actions/patient';
+
 const config = require('../../config'),
   URL = config.url;
 
@@ -17,7 +21,8 @@ export class EditPatientComponent implements OnInit {
   public groups: Array<any>;
   public genotypes: Array<any> = [];
   public patient = { name: '', age: '', height: '', gender: 'Gender', weight: '', blood_group: 'Blood Group', genotype: 'Genotype' };
-  constructor(private route: ActivatedRoute, public http: HttpClient, public router: Router, public toastr: ToastrService) { }
+  constructor(private route: ActivatedRoute, public http: HttpClient, public router: Router, public toastr: ToastrService,
+    private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -72,6 +77,7 @@ export class EditPatientComponent implements OnInit {
       if (len === 0) {
         this.http.post(`${URL}patient/update`, form).subscribe((data: any) => {
           if (data.code === 200) {
+            this.ngRedux.dispatch({ type: EDIT_PATIENT, id: data.data.id, patient: data.data });
             this.toastr.info('Patient edited!', 'BCDS');
             this.router.navigate(['patient/list']);
           } else {

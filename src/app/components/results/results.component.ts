@@ -36,9 +36,10 @@ export class ResultsComponent implements OnInit {
   loadResults() {
     this.http.get(`${URL}test/list`).subscribe((data: any) => {
       if (data.code === 200 && data.data.length !== 0) {
-        const raw = data.data, form = new FormData(), results = [];
+        const raw = data.data, results = [];
         let len = raw.length;
         raw.forEach(element => {
+          const form = new FormData();
           form.append('id', element.patient_id);
           // tslint:disable-next-line
           this.http.post(`${URL}patient/read`, form).subscribe((data: any) => {
@@ -66,9 +67,10 @@ export class ResultsComponent implements OnInit {
   loadPositive() {
     this.http.get(`${URL}test/positive`).subscribe((data: any) => {
       if (data.code === 200 && data.data.length !== 0) {
-        const raw = data.data, form = new FormData(), results = [];
+        const raw = data.data, results = [];
         let len = raw.length;
         raw.forEach(element => {
+          const form = new FormData();
           form.append('id', element.patient_id);
           // tslint:disable-next-line
           this.http.post(`${URL}patient/read`, form).subscribe((data: any) => {
@@ -96,9 +98,10 @@ export class ResultsComponent implements OnInit {
   loadNegative() {
     this.http.get(`${URL}test/negative`).subscribe((data: any) => {
       if (data.code === 200 && data.data.length !== 0) {
-        const raw = data.data, form = new FormData(), results = [];
+        const raw = data.data, results = [];
         let len = raw.length;
         raw.forEach(element => {
+          const form = new FormData();
           form.append('id', element.patient_id);
           // tslint:disable-next-line
           this.http.post(`${URL}patient/read`, form).subscribe((data: any) => {

@@ -5,6 +5,10 @@ import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert';
 import printJS from 'node_modules/print-js/src/index.js';
 
+import { select, NgRedux } from '@angular-redux/store';
+import { IAppState } from '../../store/store';
+import { DELETE_USER } from '../../actions/user';
+
 const config = require('../../config'),
   URL = config.url;
 
@@ -14,13 +18,13 @@ const config = require('../../config'),
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  public users = [];
+  @select() users;
   public init = [];
   public queryArray = [];
   public query = '';
   public p = 1;
 
-  constructor(public router: Router, public http: HttpClient) { }
+  constructor(public router: Router, public http: HttpClient, private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
     this.loadusers();
@@ -36,8 +40,7 @@ export class UsersComponent implements OnInit {
   loadusers() {
     this.http.get(`${URL}user/list`).subscribe((data: any) => {
       if (data.code === 200) {
-        this.users = data.data;
-        this.init = this.users;
+        this.init = data.data;
       }
     });
   }
@@ -55,7 +58,7 @@ export class UsersComponent implements OnInit {
         form.append('id', id);
         this.http.post(`${URL}user/delete`, form).subscribe((data: any) => {
           if (data.code === 200) {
-            this.loadusers();
+            this.ngRedux.dispatch({ type: DELETE_USER, id: id });
             swal('Poof! User deleted!', {
               icon: 'success',
             });

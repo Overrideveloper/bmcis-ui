@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from '../../store/store';
+import { ADD_USER } from '../../actions/user';
+
 const config = require('../../config'),
   URL = config.url;
 
@@ -15,7 +19,7 @@ const config = require('../../config'),
 export class CreateUserComponent implements OnInit {
   public groups: Array<any>;
   public user = { username: '', hash: '', group: 'Group' };
-  constructor(public router: Router, public http: HttpClient, public toastr: ToastrService) { }
+  constructor(public router: Router, public http: HttpClient, public toastr: ToastrService, private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
     this.groups = [ 'Admin', 'Doctor', 'Nurse', 'Lab Assistant' ];
@@ -31,7 +35,9 @@ export class CreateUserComponent implements OnInit {
 
       if (len === 0) {
         this.http.post(`${URL}user/signup`, form).subscribe((data: any) => {
+          console.log(data);
           if (data.code === 200) {
+            this.ngRedux.dispatch({ type: ADD_USER, user: data.data});
             this.toastr.info('user added!', 'BCDS');
             this.router.navigate(['user/list']);
           } else {

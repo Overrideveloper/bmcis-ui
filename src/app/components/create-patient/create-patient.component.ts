@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from '../../store/store';
+import { ADD_PATIENT } from '../../actions/patient';
+
 const config = require('../../config'),
   URL = config.url;
 
@@ -16,7 +20,7 @@ export class CreatePatientComponent implements OnInit {
   public groups: Array<any>;
   public genotypes: Array<any> = [];
   public patient = { name: '', age: '', height: '', gender: 'Gender', weight: '', blood_group: 'Blood Group', genotype: 'Genotype' };
-  constructor(public router: Router, public http: HttpClient, public toastr: ToastrService) { }
+  constructor(public router: Router, public http: HttpClient, public toastr: ToastrService, private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
     this.groups = [ 'A', 'B', 'AB', 'O' ];
@@ -57,6 +61,7 @@ export class CreatePatientComponent implements OnInit {
       if (len === 0) {
         this.http.post(`${URL}patient/create`, form).subscribe((data: any) => {
           if (data.code === 200) {
+            this.ngRedux.dispatch({ type: ADD_PATIENT, patient: data.data });
             this.toastr.info('Patient added!', 'BCDS');
             this.router.navigate(['patient/list']);
           } else {

@@ -26,7 +26,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let user of users">
+                      <tr *ngFor="let user of users | async">
                         <td>{{user.username}}</td>
                         <td>{{user.group}}</td>
                       </tr>
@@ -42,7 +42,7 @@
                       </tr>
                     </thead>
                     <tbody *ngIf="query === ''">
-                      <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+                      <tr *ngFor="let user of users | async | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
                         <td></td>
                         <td>{{user.username}}</td>
                         <td>{{user.group}}</td>
