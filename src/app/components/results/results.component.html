@@ -32,8 +32,24 @@
                         <th>Status</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr *ngFor="let result of results">
+                    <tbody *ngIf="type === 'all'">
+                      <tr *ngFor="let result of results | async">
+                        <td>{{result.patient}}</td>
+                        <td>{{result.date}}</td>
+                        <td *ngIf="result.result === 'negative'" style="color: green">Negative</td>
+                        <td *ngIf="result.result === 'positive'" style="color: crimson">Positive</td>
+                      </tr>
+                    </tbody>
+                    <tbody *ngIf="type === 'pos'">
+                      <tr *ngFor="let result of positiveResults | async">
+                        <td>{{result.patient}}</td>
+                        <td>{{result.date}}</td>
+                        <td *ngIf="result.result === 'negative'" style="color: green">Negative</td>
+                        <td *ngIf="result.result === 'positive'" style="color: crimson">Positive</td>
+                      </tr>
+                    </tbody>
+                    <tbody *ngIf="type === 'neg'">
+                      <tr *ngFor="let result of negativeResults | async">
                         <td>{{result.patient}}</td>
                         <td>{{result.date}}</td>
                         <td *ngIf="result.result === 'negative'" style="color: green">Negative</td>
@@ -51,8 +67,36 @@
                         <th></th>
                       </tr>
                     </thead>
-                    <tbody *ngIf="query === ''">
-                      <tr *ngFor="let result of results | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+                    <tbody *ngIf="query === '' && type === 'all'">
+                      <tr *ngFor="let result of results | async | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+                        <td></td>
+                        <td>{{result.patient}}</td>
+                        <td>{{result.date}}</td>
+                        <td *ngIf="result.result === 'negative'" style="color: green">Negative</td>
+                        <td *ngIf="result.result === 'positive'" style="color: crimson">Positive</td>
+                        <td>
+                          <a title="View Report" routerLink="/diagnosis/result/{{result.id}}" routerLinkActive="router-link-active" >
+                            <i class="mdi mdi-folder-open text-info" style="font-size: 1.5em;"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tbody *ngIf="query === '' && type === 'pos'">
+                      <tr *ngFor="let result of positiveResults | async | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+                        <td></td>
+                        <td>{{result.patient}}</td>
+                        <td>{{result.date}}</td>
+                        <td *ngIf="result.result === 'negative'" style="color: green">Negative</td>
+                        <td *ngIf="result.result === 'positive'" style="color: crimson">Positive</td>
+                        <td>
+                          <a title="View Report" routerLink="/diagnosis/result/{{result.id}}" routerLinkActive="router-link-active" >
+                            <i class="mdi mdi-folder-open text-info" style="font-size: 1.5em;"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tbody *ngIf="query === '' && type === 'neg'">
+                      <tr *ngFor="let result of negativeResults | async | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
                         <td></td>
                         <td>{{result.patient}}</td>
                         <td>{{result.date}}</td>
