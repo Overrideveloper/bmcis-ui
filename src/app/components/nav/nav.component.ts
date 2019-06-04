@@ -8,7 +8,7 @@ import swal from 'sweetalert';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  public user = {};
+  public user;
 
   constructor(public router: Router) { }
 

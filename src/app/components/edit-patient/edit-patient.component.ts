@@ -87,4 +87,8 @@ export class EditPatientComponent implements OnInit {
       }
     });
   }
+
+  number(number) {
+    return Number(number);
+  }
 }

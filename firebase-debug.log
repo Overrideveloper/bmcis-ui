@@ -1,0 +1,48 @@
+[debug] [2018-12-11T12:30:08.990Z] ----------------------------------------------------------------------
+[debug] [2018-12-11T12:30:08.993Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\banso\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase init
+[debug] [2018-12-11T12:30:08.993Z] CLI Version:   4.1.1
+[debug] [2018-12-11T12:30:08.993Z] Platform:      win32
+[debug] [2018-12-11T12:30:08.993Z] Node Version:  v8.11.3
+[debug] [2018-12-11T12:30:08.994Z] Time:          Tue Dec 11 2018 13:30:08 GMT+0100 (W. Central Africa Standard Time)
+[debug] [2018-12-11T12:30:08.994Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-12-11T12:30:09.003Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2018-12-11T12:30:09.004Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\banso\Desktop\Dev\Active\bcmis-ui
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2018-12-11T12:30:14.756Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects  
+ 
+[debug] [2018-12-11T12:30:15.990Z] <<< HTTP RESPONSE 200
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2018-12-11T12:30:28.746Z] >>> HTTP REQUEST GET https://www.gstatic.com/firebasejs/releases.json  
+ 
+[debug] [2018-12-11T12:30:29.405Z] Error: unable to verify the first certificate
+    at TLSSocket.<anonymous> (_tls_wrap.js:1105:38)
+    at emitNone (events.js:106:13)
+    at TLSSocket.emit (events.js:208:7)
+    at TLSSocket._finishInit (_tls_wrap.js:639:8)
+    at TLSWrap.ssl.onhandshakedone (_tls_wrap.js:469:38)
+[error] 
+[error] Error: Server Error. unable to verify the first certificate

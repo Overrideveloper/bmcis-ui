@@ -71,4 +71,8 @@ export class CreatePatientComponent implements OnInit {
       }
     });
   }
+
+  number(number) {
+    return Number(number);
+  }
 }

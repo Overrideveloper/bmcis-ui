@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     setInterval(() => {
       this.loadDate();
-    }, 30000);
+    }, 1000);
     this.loadDate();
     this.statistics();
   }

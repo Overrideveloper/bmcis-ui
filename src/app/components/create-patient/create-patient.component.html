@@ -101,7 +101,7 @@
                             </div>
                           </div>
                         </div>
-                        <button [disabled]="patient.age === '' || patient.age <= 0 || patient.weight <= 0 || patient.height <= 0 || patient.name === '' || patient.height === '' || patient.gender === 'Gender' ||
+                        <button [disabled]="patient.age === '' || number(patient.age) <= 0 || number(patient.weight) <= 0 || number(patient.height) <= 0 || patient.name === '' || patient.height === '' || patient.gender === 'Gender' ||
                           patient.weight === '' || patient.blood_group === 'Blood Group' || patient.genotype === 'Genotype'" type="submit" class="btn btn-success mr-2">Submit</button>
                     </form>
                     </div>
